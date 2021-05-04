@@ -10,11 +10,11 @@ class Field {
     this.field = field;
     this.positionX = 0;
     this.positionY = 0;
-    this.foundHat = false;
+    this.gameOver = false;
   }
 
 generateField(height, width, prob) {
-  //probabilistic hole generator funciton
+  //probabilistic hole generator function
   var holeGen = function() {
     if(Math.random() > prob) {
     return fieldCharacter;
@@ -35,7 +35,7 @@ generateField(height, width, prob) {
   //set starting position
   this.field[0][0] = pathCharacter;
 
-  //set hat position
+  //set hat position (offset so as to avoid starting cell)
   this.field[Math.floor(Math.random()*(height-1))+1][Math.floor(Math.random()*(width-1))+1] = hat;
 
 }
@@ -55,7 +55,7 @@ print() {
 const myField = new Field ([[]]);
 myField.generateField(15, 30, 0.3);
 
-while(myField.foundHat == false) {
+while(myField.gameOver == false) {
   console.clear();
   myField.print();
   let move = prompt('Which direction would you like to move?');
@@ -89,13 +89,13 @@ while(myField.foundHat == false) {
   //test if hole and end game if so
   if(myField.field[myField.positionY][myField.positionX] === 'O') {
     console.log('YOU FELL IN A HOLE... GAME OVER');
-    myField.foundHat = true;
+    myField.gameOver = true;
   }
 
   //test if hat and end game if so
   if(myField.field[myField.positionY][myField.positionX] === '^') {
     console.log('WELL DONE! YOU FOUND YOUR HAT.');
-    myField.foundHat = true;
+    myField.gameOver = true;
   }
 
 //move path
