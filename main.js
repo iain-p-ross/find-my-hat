@@ -53,7 +53,7 @@ print() {
 
 
 const myField = new Field ([[]]);
-myField.generateField(15, 30, 0.3);
+myField.generateField(15, 30, 0.2);
 
 while(myField.gameOver == false) {
   console.clear();
